@@ -13,7 +13,7 @@ for five solutions.
 
 Okay, that's great, even if the underlying pattern is a fibonacci sequence, in problems like this
 where the patterns are not so clear, how would we go about solving this? One way to reduce the time
-complexity of solving this recursively is to use a dictionary to map the number of steps present 
+complexity of solving this recursively is to use a list of no fixed length to map the number of steps present 
 (n, the number of stairs present) to the number of methods used to get there (the value mapping).
 However, we would have to sum both the current and previous values of the current key index to find
 all the possible combinations of one or two steps for however many steps are in the staircase.
@@ -25,8 +25,7 @@ the decision tree, there are multiple recursive function calls that have previou
 and others on top of that that have also previously been calculated, so doing so for each value
 even if it was previously found is very time expensive. 
 
-So we create a dictionary, map the known values of 0:0 and 1:1 for the smallest base cases (where 0 steps
-require 0 combos, 1 step requires one and only one combo), and loop up to the n given, summing the
+So we create a list, map the known values of 1 and 2, and loop up to the n given, summing the
 current and previous value of the keys, and storing them for later use in the method.
 """
 
@@ -46,5 +45,3 @@ class ClimbingStairsSolution:
             methods_per_steps.append(methods_per_steps[i -1] + methods_per_steps[i - 2])
         return(methods_per_steps[n- 1])
 
-sol = ClimbingStairsSolution()
-sol.ClimbingStairs(5)
